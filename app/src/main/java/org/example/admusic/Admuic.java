@@ -3,6 +3,7 @@ package org.example.admusic;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,7 +12,8 @@ public class Admuic extends AppCompatActivity {
     private Button pause;
     private Button stop;
     private Button next;
-    private Button previus;
+    private Button previous;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,8 @@ public class Admuic extends AppCompatActivity {
         play = (Button) findViewById(R.id.btnPlay);
         pause = (Button) findViewById(R.id.btnPause);
         stop = (Button) findViewById(R.id.btnStop);
+        next = (Button) findViewById(R.id.btnNext);
+        previous = (Button) findViewById(R.id.btnPrevious);
     }
 
     public void play(View view){
@@ -46,5 +50,25 @@ public class Admuic extends AppCompatActivity {
         Intent intent = new Intent("com.android.music.musicservicecommand");
         intent.putExtra("command", "previous");
         sendBroadcast(intent);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event){
+        super.onKeyUp(keyCode, event);
+        if(keyCode==KeyEvent.KEYCODE_VOLUME_UP){
+            next(next);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        super.onKeyDown(keyCode, event);
+        if(keyCode==KeyEvent.KEYCODE_VOLUME_DOWN){
+            previous(previous);
+            return true;
+        }
+        return false;
     }
 }

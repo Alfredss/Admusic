@@ -22,7 +22,7 @@
             android:text="@string/next"
             android:onClick="next"/>
         <Button
-            android:id="@+id/btnPrevius"
+            android:id="@+id/btnPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/previus"
